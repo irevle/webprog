@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: white;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
             a:link {
                 text-decoration: none;
