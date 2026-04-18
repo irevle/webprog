@@ -23,22 +23,43 @@
 </head>
 <body>
     <h1>Tambah Transaksi</h1>
-    <form action="./index.php" method="post">
+    <form action="" method="post">
         <label for="tanggal">Tanggal</label>
-        <input type="date" name="tanggal[]">
+        <input type="date" name="tanggal">
 
         <br><br>
 
         <label for="nominal">Nominal</label>
-        <input type="number" name="nominal[]">
+        <input type="number" name="nominal">
 
         <br><br>
 
         <button type="submit">Submit</button>
 
         <br><br>
-        
-        <a href="./index.php">&lt;&lt; Kembali</a>
+
     </form>
+    <a href="./index.php">&lt;&lt; Kembali</a>
+    
+    <?php
+    $data;
+    $cookie;
+    
+    if (isset($_COOKIE['roti'])) {
+        $cookie = json_decode($_COOKIE['roti']);
+    }
+    
+    if (isset($_POST['tanggal']) && isset($_POST['nominal'])){
+        $tanggal = $_POST["tanggal"];
+        $nominal = $_POST["nominal"];
+        $data[$tanggal] = $nominal;
+        
+        foreach ($cookie as $key => $value) {
+            $data[$key] = $value;
+        }
+        var_dump($_COOKIE['roti']);
+        setcookie('roti', json_encode($data));
+    }
+    ?>
 </body>
 </html>

@@ -22,40 +22,18 @@
     </style>
 </head>
 <body>
-    <!-- <?php
-        if(isset($_COOKIE["roti"])){
-            $roti = $_COOKIE["roti"];
-        // echo "Isi Cookie = " .$roti;
-        }
-    ?> -->
-    <form action="./tambah.php" method="POST">
-        <p>[<a href="./tambah.php">Tambah Transaksi</a>]</p>
-    </form>
-    <form action="./setting.php" method="post">
-        <p>[<a href="./setting.php">Setting</a>]</p>
-    </form>
+    <p>[<a href="./tambah.php">Tambah Transaksi</a>]</p>
+    <p>[<a href="./setting.php">Setting</a>]</p>
     <hr>
     <?php
-    echo "<ul>";
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $arrayData = array();
-            if(isset($_POST["tanggal"]) && isset($_POST["nominal"])) {
-                $tanggal = $_POST["tanggal"];
-                $nominal = $_POST["nominal"];
-                $i = 0;
-                foreach($tanggal as $value) {
-                    $arrayData[$value] = $nominal[$i];
-                    $i++;
-                }
-                // $array = !empty($_COOKIE['dataarray']) ? json_decode($_COOKIE['dataarray']) : $arrayData;
-                // setcookie('dataarray', json_encode($array), time() + (86400 * 30));
-                foreach ($arrayData as $key => $value) {
-                    echo "<li>" . $key . " - Rp. " . $value . "</li>";
-                }
+        if(isset($_COOKIE['roti'])) {
+            $cookie = json_decode($_COOKIE['roti']);
+            echo "<ul>";
+            foreach ($cookie as $key => $value) {
+                echo "<li>" . $key . " - Rp. " . $value . "</li>";
             }
+            echo "</ul>";
         }
-        
-    echo "</ul>";
     ?>
 </body>
 </html>
