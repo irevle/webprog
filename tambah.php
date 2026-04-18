@@ -22,31 +22,23 @@
     </style>
 </head>
 <body>
-    <?php if (isset($_GET["tanggal"]) && isset($_GET["nominal"])) {
-        $tanggal = strtotime($_GET["tanggal"]);
-        $nominal = $_GET["nominal"];
-        // TODO
-    } ?>
-
-
     <h1>Tambah Transaksi</h1>
-    <form action="./tambah.php" method="post">
+    <form action="./index.php" method="post">
         <label for="tanggal">Tanggal</label>
-        <input type="date" name="tanggal" value="tanggal">
+        <input type="date" name="tanggal[]">
 
         <br><br>
 
         <label for="nominal">Nominal</label>
-        <input type="number" name="nominal" value="nominal">
+        <input type="number" name="nominal[]">
 
         <br><br>
 
-        <input type="submit" value="Simpan">
+        <button type="submit">Submit</button>
 
         <br><br>
-
+        
         <a href="./index.php">&lt;&lt; Kembali</a>
     </form>
-
 </body>
 </html>
