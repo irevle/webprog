@@ -42,11 +42,11 @@
     <a href="./index.php">&lt;&lt; Kembali</a>
     
     <?php
-    $data;
-    $cookie;
+    $data = [];
+    $cookie = [];
     
     if (isset($_COOKIE['roti'])) {
-        $cookie = json_decode($_COOKIE['roti']);
+        $cookie = json_decode($_COOKIE['roti'], true);
     }
     
     if (isset($_POST['tanggal']) && isset($_POST['nominal'])){
@@ -55,9 +55,10 @@
         $data[$tanggal] = $nominal;
         
         foreach ($cookie as $key => $value) {
+            if ($key !== $tanggal){
             $data[$key] = $value;
+            }
         }
-        var_dump($_COOKIE['roti']);
         setcookie('roti', json_encode($data));
     }
     ?>
