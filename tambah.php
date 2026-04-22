@@ -55,7 +55,7 @@
         $data[$tanggal] = $nominal;
         
         foreach ($cookie as $key => $value) {
-            if ($key !== $tanggal){
+            if ($key != $tanggal){
             $data[$key] = $value;
             }
         }
