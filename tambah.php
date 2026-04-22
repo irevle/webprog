@@ -42,8 +42,8 @@
     <a href="./index.php">&lt;&lt; Kembali</a>
     
     <?php
-    $data = [];
-    $cookie = [];
+    $data;
+    $cookie;
     
     if (isset($_COOKIE['roti'])) {
         $cookie = json_decode($_COOKIE['roti'], true);
