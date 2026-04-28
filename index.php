@@ -28,8 +28,13 @@
     <?php
         if(isset($_COOKIE['roti'])) {
             $cookie = json_decode($_COOKIE['roti'], true);
-            $key = array_keys($cookie);
-            $value = array_values($cookie);
+            $key = [];
+            $value = [];
+
+            foreach ($cookie as $k => $v) {
+                $key[] = $k;
+                $value[] = $v;
+            }
 
             $urut = isset($_COOKIE['settingUrut']) ? $_COOKIE['settingUrut'] : 'tanggal';
             $arah = isset($_COOKIE['settingArah']) ? $_COOKIE['settingArah'] : 'ascend';
