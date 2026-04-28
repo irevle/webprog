@@ -27,10 +27,96 @@
     <hr>
     <?php
         if(isset($_COOKIE['roti'])) {
-            $cookie = json_decode($_COOKIE['roti']);
+            $cookie = json_decode($_COOKIE['roti'], true);
+            $key = [];
+            $value = [];
+
+            foreach ($cookie as $k => $v) {
+                $key[] = $k;
+                $value[] = $v;
+            }
+
+            $urut = isset($_COOKIE['settingUrut']) ? $_COOKIE['settingUrut'] : 'tanggal';
+            $arah = isset($_COOKIE['settingArah']) ? $_COOKIE['settingArah'] : 'ascend';
             echo "<ul>";
-            foreach ($cookie as $key => $value) {
-                echo "<li>" . $key . " - Rp. " . $value . "</li>";
+
+            if($urut == 'tanggal'){
+                if($arah == 'ascend'){
+                    for ($i = 0; $i < count($key); $i++) {
+                        for ($j = 0; $j < count($key) - 1; $j++) {
+                            if ($key[$j] > $key[$j+1]) { 
+                            
+                                $simpanKey = $key[$j];
+                                $key[$j] = $key[$j+1];// tuker key nya biar jadi yang kecil tetep di kiri
+                                $key[$j+1] = $simpanKey;
+                            
+                                $simpanValue = $value[$j];// tuker value nya
+                                $value[$j] = $value[$j+1];
+                                $value[$j+1] = $simpanValue;
+                            
+                            }
+                        }
+                    }
+                }
+                else{ //urutin sesuai descending tanggal
+                    for ($i = 0; $i < count($key); $i++) {
+                        for ($j = 0; $j < count($key) - 1; $j++) {
+                            if ($key[$j] < $key[$j+1]) { 
+                            
+                                $simpanKey = $key[$j];
+                                $key[$j] = $key[$j+1];// tuker key nya biar jadi yang kecil tetep di kanan
+                                $key[$j+1] = $simpanKey;
+                            
+                                $simpanValue = $value[$j];// tuker value nya
+                                $value[$j] = $value[$j+1];
+                                $value[$j+1] = $simpanValue;
+                            
+                            }
+                        }
+                    }
+                }
+            }
+
+            else{ //urutin sesuai nominal
+                if($arah == 'ascend'){
+                    for ($i = 0; $i < count($value); $i++) {
+                        for ($j = 0; $j < count($value) - 1; $j++) {
+                            if ($value[$j] > $value[$j+1]) { 
+                            
+                                $simpanValue = $value[$j];
+                                $value[$j] = $value[$j+1];// tuker value nya biar jadi yang kecil tetep di kiri
+                                $value[$j+1] = $simpanValue;
+                            
+                                $simpanKey = $key[$j];// tuker key nya
+                                $key[$j] = $key[$j+1];
+                                $key[$j+1] = $simpanKey;
+                            
+                            }
+                        }
+                    }
+                }
+                else{ // urutin sesuai descending nominal
+                    for ($i = 0; $i < count($value); $i++) {
+                        for ($j = 0; $j < count($value) - 1; $j++) {
+                            if ($value[$j] < $value[$j+1]) { 
+                            
+                                $simpanValue = $value[$j];
+                                $value[$j] = $value[$j+1];// tuker value nya biar jadi yang kecil tetep di kiri
+                                $value[$j+1] = $simpanValue;
+                            
+                                $simpanKey = $key[$j];// tuker key nya
+                                $key[$j] = $key[$j+1];
+                                $key[$j+1] = $simpanKey;
+                            
+                            }
+                        }
+                    }
+                }
+            }
+            
+            for ($i = 0; $i < count($key); $i++) {
+                echo "<li>" . $key[$i] . " - Rp. " . $value[$i] . "</li>";
+                
             }
             echo "</ul>";
         }
