@@ -48,5 +48,11 @@
 
         <a href="./index.php">&lt;&lt; Kembali</a>
     </form>
+    <?php
+    if(isset($_POST['urut']) && isset($_POST['arah'])){
+        setcookie('urut',$_POST['urut'], time()+ (86400 * 30));
+        setcookie('arah',$_POST['arah'], time()+ (86400 * 30));
+    }
+    ?>
 </body>
 </html>
