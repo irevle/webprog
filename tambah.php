@@ -59,7 +59,7 @@
             $data[$key] = $value;
             }
         }
-        setcookie('roti', json_encode($data));
+        setcookie('roti', json_encode($data), time()+ (86400 * 30));
     }
     ?>
 </body>
