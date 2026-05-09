@@ -42,8 +42,8 @@
     <a href="./index.php">&lt;&lt; Kembali</a>
     
     <?php
-    $data = [];
-    $cookie = [];
+    $data;
+    $cookie;
     
     if (isset($_COOKIE['roti'])) {
         $cookie = json_decode($_COOKIE['roti'], true);
@@ -54,10 +54,13 @@
         $nominal = $_POST["nominal"];
         $data[$tanggal] = $nominal;
         
+        if (isset($_COOKIE['roti']))
+        {
         foreach ($cookie as $key => $value) {
             if ($key != $tanggal){
             $data[$key] = $value;
             }
+        }
         }
         setcookie('roti', json_encode($data), time()+ (86400 * 30));
     }

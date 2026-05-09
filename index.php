@@ -31,17 +31,7 @@
             $arah = '';
             if (isset($_COOKIE['arah'])){
                 $arah = $_COOKIE['arah'];
-            }
-            ksort($cookie);
-            if ($arah == 'descend')
-                {
-                    $descend = [];
-                    foreach ($cookie as $key => $value)
-                    {
-                        $descend = [$key => $value] + $descend;
-                    }
-                    $cookie = $descend;
-                }
+            }          
             echo "<ul>";
             foreach ($cookie as $key => $value) {
                 echo "<li>" . $key . " - Rp. " . $value . "</li>";
