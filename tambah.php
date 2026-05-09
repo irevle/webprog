@@ -54,12 +54,14 @@
         $nominal = $_POST["nominal"];
         $data[$tanggal] = $nominal;
         
+        if(isset($_COOKIE['roti'])){
         foreach ($cookie as $key => $value) {
             if ($key != $tanggal){
             $data[$key] = $value;
             }
         }
-        setcookie('roti', json_encode($data));
+        }
+        setcookie('roti', json_encode($data), time() + 86400 );
     }
     ?>
 </body>
