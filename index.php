@@ -109,7 +109,11 @@
         }
 
         for ($i = 0; $i < count($key); $i++) {
-            echo "<li>" . $key[$i] . " - Rp. " . $value[$i] . "</li>";
+            echo "<li>" .
+                $key[$i] .
+                " - Rp. " .
+                number_format($value[$i]) .
+                "</li>";
         }
         echo "</ul>";
     } else {
