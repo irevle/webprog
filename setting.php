@@ -1,11 +1,13 @@
 <?php
-$urut = isset($_COOKIE['settingUrut']) ? $_COOKIE['settingUrut'] : 'tanggal'; // cek kalo cookie belum ada pake default, kalo udah yang sudaha ada
-$arah = isset($_COOKIE['settingArah']) ? $_COOKIE['settingArah'] : 'ascend';
-if(isset($_POST['urut'])){ //cek ada data gak yang dikirim dari form ni
-    $urut = $_POST['urut']; //$_POST['urut'] diambil dari radio button
-    $arah = $_POST['arah'];
-    setcookie('settingUrut', $urut); //simpan data urut yang ditampung dari $_POST['urut'] kedalem cookie 
-    setcookie('settingArah', $arah);
+$urut = isset($_COOKIE["settingUrut"]) ? $_COOKIE["settingUrut"] : "tanggal";
+$arah = isset($_COOKIE["settingArah"]) ? $_COOKIE["settingArah"] : "ascend";
+$saved = false;
+if (isset($_POST["urut"])) {
+    $urut = $_POST["urut"];
+    $arah = $_POST["arah"];
+    setcookie("settingUrut", $urut);
+    setcookie("settingArah", $arah);
+    $saved = true;
 }
 ?>
 
@@ -34,21 +36,35 @@ if(isset($_POST['urut'])){ //cek ada data gak yang dikirim dari form ni
 </head>
 <body>
     <h1>Setting</h1>
-
+    <?php if ($saved) {
+        echo "<p style='color: red'>Data berhasil disimpan.</p>";
+    } ?>
 
     <form action="./setting.php" method="POST">
         <label>Urut Berdasarkan :</label>
-        <input type="radio" id="tanggal" name="urut" value="tanggal" <?php echo ($urut == 'tanggal') ? 'checked' : ''?>>
+        <input type="radio" id="tanggal" name="urut" value="tanggal" <?php echo $urut ==
+        "tanggal"
+            ? "checked"
+            : ""; ?>>
         <label for="tanggal">Tanggal</label>
-        <input type="radio" id="nominal" name="urut" value="nominal" <?php echo ($urut == 'nominal') ? 'checked' : ''?>>
+        <input type="radio" id="nominal" name="urut" value="nominal" <?php echo $urut ==
+        "nominal"
+            ? "checked"
+            : ""; ?>>
         <label for="nominal">Nominal</label>
 
         <br><br>
 
         <label>Arah :</label>
-        <input type="radio" id="ascend" name="arah" value="ascend" <?php echo ($arah == 'ascend') ? 'checked' : ''?>>
+        <input type="radio" id="ascend" name="arah" value="ascend" <?php echo $arah ==
+        "ascend"
+            ? "checked"
+            : ""; ?>>
         <label for="ascend">Ascending</label>
-        <input type="radio" id="descend" name="arah" value="descend" <?php echo ($arah == 'descend') ? 'checked' : ''?>> 
+        <input type="radio" id="descend" name="arah" value="descend" <?php echo $arah ==
+        "descend"
+            ? "checked"
+            : ""; ?>>
         <label for="descend">Descending</label>
 
         <br><br>

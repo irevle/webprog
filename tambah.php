@@ -23,6 +23,33 @@
 </head>
 <body>
     <h1>Tambah Transaksi</h1>
+
+    <?php
+    $data;
+    $cookie;
+
+    if (isset($_COOKIE["roti"])) {
+        $cookie = json_decode($_COOKIE["roti"], true);
+    }
+
+    if (isset($_POST["tanggal"]) && isset($_POST["nominal"])) {
+        $tanggal = $_POST["tanggal"];
+        $nominal = $_POST["nominal"];
+        $data[$tanggal] = $nominal;
+
+        if (isset($_COOKIE["roti"])) {
+            foreach ($cookie as $key => $value) {
+                if ($key != $tanggal) {
+                    $data[$key] = $value;
+                }
+            }
+        }
+        setcookie("roti", json_encode($data), time() + 86400);
+        echo "<p style='color: red'>Data berhasil ditambah.</p>";
+    }
+    ?>
+
+
     <form action="" method="post">
         <label for="tanggal">Tanggal</label>
         <input type="date" name="tanggal">
@@ -40,29 +67,5 @@
 
     </form>
     <a href="./index.php">&lt;&lt; Kembali</a>
-    
-    <?php
-    $data;
-    $cookie;
-    
-    if (isset($_COOKIE['roti'])) {
-        $cookie = json_decode($_COOKIE['roti'], true);
-    }
-    
-    if (isset($_POST['tanggal']) && isset($_POST['nominal'])){
-        $tanggal = $_POST["tanggal"];
-        $nominal = $_POST["nominal"];
-        $data[$tanggal] = $nominal;
-        
-        if(isset($_COOKIE['roti'])){
-        foreach ($cookie as $key => $value) {
-            if ($key != $tanggal){
-            $data[$key] = $value;
-            }
-        }
-        }
-        setcookie('roti', json_encode($data), time() + 86400 );
-    }
-    ?>
 </body>
 </html>
