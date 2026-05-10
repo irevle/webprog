@@ -22,8 +22,7 @@
     </style>
 </head>
 <body>
-    <p>[<a href="./tambah.php">Tambah Transaksi</a>]</p>
-    <p>[<a href="./setting.php">Setting</a>]</p>
+    <p>[<a href="./tambah.php">Tambah Transaksi</a>]&nbsp;&nbsp;&nbsp;&nbsp;[<a href="./setting.php">Setting</a>]</p>
     <hr>
     <?php if (isset($_COOKIE["roti"])) {
         $cookie = json_decode($_COOKIE["roti"], true);
